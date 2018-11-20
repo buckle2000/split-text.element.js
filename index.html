@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            display: grid;
+            height: 90vh;
+            place-content: center;
+        }
+        split-text {
+            font-size: 200%;
+            font-family: Liberation Sans;
+        }
+        .up, .down {
+            /* inline element cannot be animated */
+            display: inline-block; 
+        }
+    </style>
+    <script src="split-text.element.js" type="module" async></script>
+    <script src="node_modules/animejs/anime.min.js" defer></script>
+</head>
+
+<body>
+
+    <split-text child-class="down">Some text <b>with</b> style</split-text>
+    <split-text child-class="up">Some text <b>with</b> style</split-text>
+    
+    <script>
+        function animate() {
+            anime({
+                targets: '.down',
+                delay: (_, i) => i * 10,
+                translateY: ['-1em', 0],
+                opacity: [0, 1],
+            })
+            anime({
+                targets: '.up',
+                delay: (_, i) => i * 10,
+                translateY: ['1em', 0],
+                opacity: [0, 1],
+            })
+        }
+    </script>
+    <button onclick="window.animate()">Animate</button>
+</body>
+
+</html>
